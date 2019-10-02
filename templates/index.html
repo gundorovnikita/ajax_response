@@ -1,5 +1,7 @@
 {% load staticfiles %}
 
+<div id="field">
+
 {% for post in post %}
 	<li data-id="{{ post.id }}" class="companydelete"> 
       {{post.title}}
@@ -9,14 +11,19 @@
 	
 {% endfor %}
 
-<div id="field">
+
 </div>
 <hr>
 <br>
 <hr>
+<div id="field2"></div>
+
+<h2></h2>
+<button id="generate">generate new element</button>
 
 <input type="text" id="add">
 <button type="submit" id="submit">Sumbit</button>
+<button id="submit2">Sumbit2</button>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

@@ -27,23 +27,27 @@ $.ajaxSetup({
 
 
 submit.onclick = function create(){
-	var text = document.getElementById("add"); 
-	console.log(text.value);
+	var text = document.getElementById("add").value; 
+	console.log(text);
 	$.ajax({
 	  url: '/my_ajax_request/',
 	  dataType: 'json',
 	  type: 'POST',
 	  data: {	  	
-	  	'message': text.value,
+	  	'message': text,
 	  },
-
+      success: function (data) {
+            var id = data.id;
+            $('#field').append('<li data-id="'+id+'" class="companydelete">'+text+' '+'<a href="#">Удалить</a></li><hr>');
+	  }
 	});
 	$('#add').val('');
-	$('#field').append(123);
+	
 }
 
 $(".companydelete").click(function(){
 	var id = $(this).data("id")
+	console.log('trigger')
 	$.ajax({
 	  url: '/companydeleteitem/',
 	  data: {
@@ -53,3 +57,26 @@ $(".companydelete").click(function(){
 	  type: 'POST',
 	});
 })
+
+
+
+
+$("#submit2").click(function (){
+	$('#field2').append('<li class="cd">123</li>');
+});
+
+$("#field2").on('click', "li.cd",function(){
+	console.log('allright')
+});
+
+
+var counter = 0;
+$("#generate").click(function() {
+    $("h2").append("<p class='test'>click me " + (++counter) + "</p>")
+});
+
+// With on():
+
+$("h2").on("click", "p.test", function(){
+    console.log($(this).text());
+});

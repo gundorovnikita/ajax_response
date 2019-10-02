@@ -12,11 +12,12 @@ def index(request):
 	return render(request, 'index.html' , context)
 
 def requestAjax(request):
-	data = {
-		'is_valid': False,}
 	if request.is_ajax():
 		message = request.POST.get('message')
-		Company.objects.create(title=message)
+		company = Company.objects.create(title=message)
+		data = {
+			'id': company.id,
+		}
 	return JsonResponse(data)
 
 
