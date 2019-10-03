@@ -38,16 +38,18 @@ submit.onclick = function create(){
 	  },
       success: function (data) {
             var id = data.id;
-            $('#field').append('<li data-id="'+id+'" class="companydelete">'+text+' '+'<a href="#">Удалить</a></li><hr>');
+            $('#field').append('<li class="companydelete" data-id="'+id+'" >'+text+' '+'<a href="#">Удалить</a></li>');
 	  }
 	});
 	$('#add').val('');
 	
 }
 
-$(".companydelete").click(function(){
-	var id = $(this).data("id")
-	console.log('trigger')
+
+$("#field").on("click", "li.companydelete", function(){
+    var id = $(this).data("id");
+	console.log('i61');
+	$(this).remove();
 	$.ajax({
 	  url: '/companydeleteitem/',
 	  data: {
@@ -56,27 +58,4 @@ $(".companydelete").click(function(){
 	  dataType: 'json',
 	  type: 'POST',
 	});
-})
-
-
-
-
-$("#submit2").click(function (){
-	$('#field2').append('<li class="cd">123</li>');
-});
-
-$("#field2").on('click', "li.cd",function(){
-	console.log('allright')
-});
-
-
-var counter = 0;
-$("#generate").click(function() {
-    $("h2").append("<p class='test'>click me " + (++counter) + "</p>")
-});
-
-// With on():
-
-$("h2").on("click", "p.test", function(){
-    console.log($(this).text());
 });
